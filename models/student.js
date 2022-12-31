@@ -1,11 +1,11 @@
-import {model, Schema} from "mongoose";
+import { model, Schema } from "mongoose";
 
 const studentSchema = new Schema({
-    roll: Number,
-    fullName: String,
-    Mobile: Number
+  roll: Number,
+  fullName: String,
+  mobile: Number
 })
 
-const student = model("student",studentSchema)
+const Student = model("Student", studentSchema)
 
-export default student
+export default Student
