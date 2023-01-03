@@ -8,7 +8,9 @@ import Student from "./models/Student.js"
 const app = express();
 app.use(express.json())
 
-mongoose.connect(process.env.MONGODB_URL, ()=>{
+mongoose.set("strictQuery", true);
+
+mongoose.connect(process.env.MONGODB_URL,{useNewUrlParser: true}, ()=>{
   console.log('connected to mongodb')
 })
 
@@ -33,6 +35,33 @@ app.post('/create-student', async(req, res)=>{
   res.json({
    success: true,
    data: savedStudent
+  })
+})
+
+app.post('/update-student',async (req,res)=>{
+  const {roll,fullName,mobile} = req.body;
+
+  const result = await Student.updateOne(
+    {
+      roll : roll
+    },
+    {
+    fullName : fullName,
+    mobile : mobile
+  })
+  
+})
+
+app.post('/delete-student',async (req,res)=>{
+  const {roll} = req.body;
+  const result = await Student.deleteOne(
+    {
+      roll:roll
+    }
+  )
+  res.send({
+    success : true,
+    message : "Student deleted successfully"
   })
 })
 

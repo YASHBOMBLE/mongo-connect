@@ -1,4 +1,4 @@
-import { model, Schema } from "mongoose";
+import { model,mongoose, Schema } from "mongoose";
 
 const studentSchema = new Schema({
   roll: Number,
@@ -6,6 +6,6 @@ const studentSchema = new Schema({
   mobile: Number
 })
 
-const Student = model("Student", studentSchema)
+const Student = mongoose.model("Student", studentSchema)
 
 export default Student
